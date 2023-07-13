@@ -26,23 +26,23 @@ We just got an email from Ms. Cindy to make report for next week.
 <summary><b>1.</b> Gsearch seems to be the biggest driver of our business. Could you pull monthly trends for gsearch sessions and orders so that we can showcase the growth there?</summary>
 
   - Code
-    ```
-    SELECT 
-         YEAR(website_sessions.created_at) AS yr,
-         MONTH(website_sessions.created_at) AS mo,
-         COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
-         COUNT(DISTINCT orders.order_id) AS orders,
-         COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
-    FROM
-      website_sessions
+```
+SELECT 
+    YEAR(website_sessions.created_at) AS yr,
+    MONTH(website_sessions.created_at) AS mo,
+    COUNT(DISTINCT website_sessions.website_session_id) AS sessions,
+    COUNT(DISTINCT orders.order_id) AS orders,
+    COUNT(DISTINCT orders.order_id) / COUNT(DISTINCT website_sessions.website_session_id) AS conv_rate
+FROM
+    website_sessions
         LEFT JOIN
-      orders ON orders.website_session_id = website_sessions.website_session_id
-    WHERE
-      website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
+    orders ON orders.website_session_id = website_sessions.website_session_id
+WHERE
+    website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
         AND website_sessions.utm_source = 'gsearch'
-    GROUP BY 1,2;
+GROUP BY 1,2;
 
-    ```
+```
     
   - The Output<br>
     [Image]()
@@ -115,36 +115,36 @@ We just got an email from Ms. Cindy to make report for next week.
 <summary><b>4.</b> I’m worried that one of our more pessimistic board members may be concerned about the large % of traffic from Gsearch. Can you pull monthly trends for Gsearch, alongside monthly trends for each of our other channels?</summary>
 
   - Code
-    ```
-    SELECT 
-          YEAR(created_at) AS yr,
-          MONTH(created_at) AS mo,
-          COUNT(DISTINCT CASE
-                  WHEN utm_source = 'gsearch' THEN website_session_id
-              END) AS 'gsearch_paid_sessions',
-          COUNT(DISTINCT CASE
-                  WHEN utm_source = 'bsearch' THEN website_session_id
-              END) AS 'bsearch_paid_sessions',
-          COUNT(DISTINCT CASE
-                  WHEN
-                      utm_source IS NULL
-                          AND http_referer IS NOT NULL
-                  THEN
-                      website_session_id
-              END) AS 'organic_paid_sessions',
-          COUNT(DISTINCT CASE
-                  WHEN
-                      utm_source IS NULL
-                          AND http_referer IS NULL
-                  THEN
-                      website_session_id
-              END) AS 'direct_type_paid_sessions'
-    FROM
-        website_sessions
-    WHERE
-        created_at BETWEEN '2012-03-01' AND '2012-11-27'
-    GROUP BY 1 , 2;
-    ```
+```
+SELECT 
+    YEAR(created_at) AS yr,
+    MONTH(created_at) AS mo,
+    COUNT(DISTINCT CASE
+            WHEN utm_source = 'gsearch' THEN website_session_id
+        END) AS 'gsearch_paid_sessions',
+    COUNT(DISTINCT CASE
+            WHEN utm_source = 'bsearch' THEN website_session_id
+        END) AS 'bsearch_paid_sessions',
+    COUNT(DISTINCT CASE
+            WHEN
+                utm_source IS NULL
+                    AND http_referer IS NOT NULL
+            THEN
+                website_session_id
+        END) AS 'organic_paid_sessions',
+    COUNT(DISTINCT CASE
+            WHEN
+                utm_source IS NULL
+                    AND http_referer IS NULL
+            THEN
+                website_session_id
+        END) AS 'direct_type_paid_sessions'
+FROM
+    website_sessions
+WHERE
+    created_at BETWEEN '2012-03-01' AND '2012-11-27'
+GROUP BY 1 , 2;
+```
   - The Output<br>
    [Image]()
 

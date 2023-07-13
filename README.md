@@ -53,23 +53,31 @@ GROUP BY 1,2;
 <summary><b>2.</b> Next, it would be great to see a similar monthly trend for Gsearch, but this time splitting out nonbrand and brand campaigns separately. I am wondering if brand is picking up at all. If so, this is a good story to tell.</summary>
 
  - Code
-   ```
-   SELECT
-       YEAR(website_sessions.created_at) AS yr,
-       MONTH(website_sessions.created_at) AS mo,
-       COUNT(distinct case when website_sessions.utm_campaign = 'nonbrand' then website_sessions.website_session_id end) as 'nonbrand_sessions',
-       COUNT(distinct case when website_sessions.utm_campaign = 'nonbrand' then orders.order_id end) as 'nonbrand_orders',
-       COUNT(distinct case when website_sessions.utm_campaign = 'brand' then website_sessions.website_session_id end) as 'brand_sessions',
-       COUNT(distinct case when website_sessions.utm_campaign = 'brand' then orders.order_id end) as 'brand_orders'
-    FROM
-       website_sessions
-          LEFT JOIN
-       orders ON orders.website_session_id = website_sessions.website_session_id
-    WHERE
-       website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
-         AND website_sessions.utm_source = 'gsearch'
-    GROUP BY YEAR(website_sessions.created_at) , MONTH(website_sessions.created_at);
-   ```
+```
+SELECT 
+    YEAR(website_sessions.created_at) AS yr,
+    MONTH(website_sessions.created_at) AS mo,
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.utm_campaign = 'nonbrand' THEN website_sessions.website_session_id
+        END) AS 'nonbrand_sessions',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.utm_campaign = 'nonbrand' THEN orders.order_id
+        END) AS 'nonbrand_orders',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.utm_campaign = 'brand' THEN website_sessions.website_session_id
+        END) AS 'brand_sessions',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.utm_campaign = 'brand' THEN orders.order_id
+        END) AS 'brand_orders'
+FROM
+    website_sessions
+        LEFT JOIN
+    orders ON orders.website_session_id = website_sessions.website_session_id
+WHERE
+    website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
+        AND website_sessions.utm_source = 'gsearch'
+GROUP BY YEAR(website_sessions.created_at) , MONTH(website_sessions.created_at);
+```
  - The Output<br>
    [Image]()
 
@@ -79,32 +87,34 @@ GROUP BY 1,2;
 <summary><b>3.</b> While we’re on Gsearch, could you dive into nonbrand, and pull monthly sessions and orders split by device type? I want to flex our analytical muscles a little and show the board we really know our traffic sources.</summary>
 
   - Code
-    ```
-    SELECT 
-         YEAR(website_sessions.created_at) AS yr,
-         MONTH(website_sessions.created_at) AS mo,
-         COUNT(DISTINCT CASE
-                 WHEN website_sessions.device_type = 'desktop' THEN website_sessions.website_session_id
-             END) AS 'desktop_sessions',
-         COUNT(DISTINCT CASE
-                 WHEN website_sessions.device_type = 'desktop' THEN orders.order_id
-             END) AS 'desktop_orders',
-         COUNT(DISTINCT CASE
-                 WHEN website_sessions.device_type = 'mobile' THEN website_sessions.website_session_id
-             END) AS 'mobile_sessions',
-         COUNT(DISTINCT CASE
-                 WHEN website_sessions.device_type = 'mobile' THEN orders.order_id
-             END) AS 'mobile_orders'
-    FROM
-        website_sessions
-          LEFT JOIN
-        orders ON orders.website_session_id = website_sessions.website_session_id
-    WHERE
-        website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
-          AND website_sessions.utm_source = 'gsearch'
-          AND website_sessions.utm_campaign = 'nonbrand'
-    GROUP BY 1,2;
-    ```
+```
+SELECT 
+    YEAR(website_sessions.created_at) AS yr,
+    MONTH(website_sessions.created_at) AS mo,
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.device_type = 'desktop' THEN website_sessions.website_session_id
+        END) AS 'desktop_sessions',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.device_type = 'desktop' THEN orders.order_id
+        END) AS 'desktop_orders',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.device_type = 'mobile' THEN website_sessions.website_session_id
+        END) AS 'mobile_sessions',
+    COUNT(DISTINCT CASE
+            WHEN website_sessions.device_type = 'mobile' THEN orders.order_id
+        END) AS 'mobile_orders'
+FROM
+    website_sessions
+        LEFT JOIN
+    orders ON orders.website_session_id = website_sessions.website_session_id
+WHERE
+    website_sessions.created_at BETWEEN '2012-03-01' AND '2012-11-27'
+        AND website_sessions.utm_source = 'gsearch'
+        AND website_sessions.utm_campaign = 'nonbrand'
+GROUP BY 1,2;
+
+select distinct device_type from website_sessions;
+```
   - The Output<br>
    [Image]()
 

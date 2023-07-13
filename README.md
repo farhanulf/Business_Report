@@ -112,8 +112,6 @@ WHERE
         AND website_sessions.utm_source = 'gsearch'
         AND website_sessions.utm_campaign = 'nonbrand'
 GROUP BY 1,2;
-
-select distinct device_type from website_sessions;
 ```
   - The Output<br>
    [Image]()

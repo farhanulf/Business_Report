@@ -17,7 +17,7 @@ We just got an email from Ms. Cindy to make report for next week.
 <details>
 <summary></b> The email </summary>
 
- [Image]()
+ ![Image](https://github.com/farhanulf/Business_Report/blob/main/Email.PNG)
  
 </details>
 
@@ -45,7 +45,7 @@ GROUP BY 1,2;
 ```
     
   - The Output<br>
-    [Image]()
+    ![Image](https://github.com/farhanulf/Business_Report/blob/main/1.PNG)
   
 </details>
 
@@ -79,7 +79,7 @@ WHERE
 GROUP BY YEAR(website_sessions.created_at) , MONTH(website_sessions.created_at);
 ```
  - The Output<br>
-   [Image]()
+   ![Image](https://github.com/farhanulf/Business_Report/blob/main/2.PNG)
 
 </details>
 
@@ -114,7 +114,7 @@ WHERE
 GROUP BY 1,2;
 ```
   - The Output<br>
-   [Image]()
+   ![Image](https://github.com/farhanulf/Business_Report/blob/main/3.PNG)
 
 
 </details>
@@ -154,7 +154,7 @@ WHERE
 GROUP BY 1 , 2;
 ```
   - The Output<br>
-   [Image]()
+   ![Image](https://github.com/farhanulf/Business_Report/blob/main/4.PNG)
 
 
 </details>
@@ -179,7 +179,7 @@ WHERE
 GROUP BY 1,2;
 ```
   - The Output<br>
-   [Image]()
+   ![Image](https://github.com/farhanulf/Business_Report/blob/main/5.PNG)
 
 
 </details>

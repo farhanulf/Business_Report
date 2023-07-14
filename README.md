@@ -10,7 +10,7 @@ The project involves the following key aspects:
 ## Code and Resources Used
 MySQL Workbench <br>
 Version: 8.0<br>
-Dataset: [Github repo]()
+Dataset: [create_mavenfuzzyfactory_vApril2022.sql](https://drive.google.com/file/d/1rTNoprF6yXpssYNu-H-yvew0LgOEaX4i/view?usp=sharing)
 
 ## Context
 We just got an email from Ms. Cindy to make report for next week.

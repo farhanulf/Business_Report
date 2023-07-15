@@ -1,5 +1,5 @@
-# Business Report: Project Overview
-The objective of this project is to create a comprehensive business report for stakeholders that provides valuable insights and analysis. The report aims to offer a deep understanding of the company's operations and performance by utilizing data querying techniques, website performance analysis, and relevant financial metrics.
+# Traffic Source Analysis: Project Overview
+The objective of this project is to create a comprehensive traffic source analysis for stakeholders that provides valuable insights and analysis. The report aims to offer a deep understanding of the company's operations and performance by utilizing data querying techniques, website performance analysis, and relevant financial metrics.
 
 The project involves the following key aspects:
 - Data Querying using the "Big 6" Statements and Clauses: The report utilizes SQL queries to extract essential information from the company's databases.
